@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "status": "not_trained",
+  "message": "学習画像の提供前です。現在は品目名検索をご利用ください。",
+  "model_url": "./model.json",
+  "metadata_url": "./metadata.json",
+  "labels": {
+    "pet_bottle": "pet_bottle",
+    "empty_can": "empty_can",
+    "glass_bottle": "glass_bottle",
+    "cardboard": "cardboard",
+    "newspaper": "newspaper",
+    "dry_cell": "dry_cell",
+    "fluorescent_tube": "fluorescent_tube",
+    "spray_can": "spray_can",
+    "other_unknown": null
+  },
+  "trained_date": null,
+  "model_version": null,
+  "notes": "statusをreadyにするのは、未使用画像で評価し、モデルファイルを配置した後だけです。"
+}

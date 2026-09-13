@@ -1,0 +1,956 @@
+{
+  "schema_version": "1.1",
+  "municipality": "栃木県足利市",
+  "scope": "家庭ごみ",
+  "checked_date": "2026-09-10",
+  "source_policy": "足利市公式ホームページのみを分別根拠として使用",
+  "general_notes": [
+    "決められた日の朝8時30分までに、決められた場所へ出してください。",
+    "収集日は町内ごとに異なります。",
+    "長辺が50cmを超えるものは、雨傘・蛍光管・段ボールを除き、原則としてごみステーションに出せません。",
+    "45L袋で4袋を超える多量のごみは、ごみステーションでは収集されません。",
+    "名草地区では2026年6月からプラスチック類の実証分別を実施しています。"
+  ],
+  "sources": [
+    {
+      "title": "家庭ごみの分け方・出し方",
+      "url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "source_last_updated": "2026-09-03"
+    },
+    {
+      "title": "家庭ごみの五十音一覧",
+      "url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "source_last_updated": null
+    },
+    {
+      "title": "名草地区限定・プラスチック類の出し方ガイド",
+      "url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007939.html",
+      "source_last_updated": "2026-04-14"
+    }
+  ],
+  "items": [
+    {
+      "id": "pet_bottle",
+      "name": "ペットボトル",
+      "kana": "ぺっとぼとる",
+      "synonyms": ["PETボトル", "ぺっとぼとる", "飲料ボトル"],
+      "search_hint": "PETマークがある、びん状の容器",
+      "result": {
+        "category": "資源物",
+        "instruction": "フタを取り、ラベルをはがし、水などですすいで、つぶさずに透明または半透明の袋へ入れて出します。",
+        "cautions": ["PET識別マークがある、びん状のものが対象です。", "プラマークの容器はペットボトルではありません。", "フタとラベルは本体と分けてください。名草地区はプラスチック類の実証ルールも確認してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "empty_can",
+      "name": "空き缶",
+      "kana": "あきかん",
+      "synonyms": ["アルミ缶", "スチール缶", "缶", "ジュース缶", "ビール缶"],
+      "search_hint": "アルミ缶・スチール缶など",
+      "result": {
+        "category": "金属類",
+        "instruction": "中身を取り除いてすすぎ、軽くつぶし、透明または半透明の袋へ入れて出します。",
+        "cautions": ["中身が残った缶は出さないでください。", "長辺50cm超はごみステーションに出せません。", "スプレー缶やカセットボンベは別の有害ごみルールです。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "glass_bottle",
+      "name": "空きびん",
+      "kana": "あきびん",
+      "synonyms": ["ガラスびん", "瓶", "ビン", "空き瓶", "飲料びん"],
+      "search_hint": "割れ・汚れ・においで分別が変わります",
+      "decision": {
+        "start": "condition",
+        "nodes": {
+          "condition": {
+            "prompt": "割れておらず、汚れやにおいを落とせますか？",
+            "help": "フタを外し、中をすすげる状態か確認してください。",
+            "options": [
+              {
+                "label": "はい",
+                "outcome": {
+                  "category": "資源物",
+                  "instruction": "フタを取り、中をすすぎ、無色透明・茶色・その他の色に分け、透明または半透明の袋へ入れて出します。",
+                  "cautions": ["色ごとに分けてください。", "外したフタは材質に応じて分別してください。"]
+                }
+              },
+              {
+                "label": "いいえ（割れ・汚れ・においあり）",
+                "outcome": {
+                  "category": "燃やせないごみ",
+                  "instruction": "割れたびんは新聞紙や紙袋で包んで「危険」と表示し、透明または半透明の袋へ入れて出します。",
+                  "cautions": ["収集作業員が触れてけがをしないよう、必ず包んで「危険」と表示してください。"],
+                  "safety_level": "high"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "newspaper",
+      "name": "新聞紙・折込チラシ",
+      "kana": "しんぶんしおりこみちらし",
+      "synonyms": ["新聞", "しんぶん", "チラシ", "折込広告"],
+      "search_hint": "新聞紙と折込チラシ",
+      "result": {
+        "category": "資源物",
+        "instruction": "ひもで十文字にしばって出します。",
+        "cautions": ["濡れないように出してください。", "汚れやにおいが取れない紙は燃やせるごみです。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "cardboard",
+      "name": "段ボール",
+      "kana": "だんぼーる",
+      "synonyms": ["ダンボール", "段ボール箱", "箱"],
+      "search_hint": "段ボールマークのある紙箱",
+      "result": {
+        "category": "資源物",
+        "instruction": "たたみ、ひもで十文字にしばって出します。",
+        "cautions": ["テープ類やホチキス針を取り除いてください。", "油・ペンキ・泥などでひどく汚れたもの、ワックス加工、強いにおい、著しく劣化したものは細かくして燃やせるごみです。", "長辺50cm超でも段ボールはこの方法で出せます。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "paper_carton",
+      "name": "紙パック",
+      "kana": "かみぱっく",
+      "synonyms": ["牛乳パック", "ジュースパック", "ミルクパック"],
+      "search_hint": "内側が白い牛乳・ジュースの紙パック",
+      "result": {
+        "category": "資源物",
+        "instruction": "洗って切り開いて乾かし、ひもで十文字にしばって出します。",
+        "cautions": ["内側が白い紙パックが対象です。", "紙パックマークを確認してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "books_magazines",
+      "name": "雑誌・本",
+      "kana": "ざっしほん",
+      "synonyms": ["雑誌", "本", "文庫本", "辞書", "まんが", "漫画"],
+      "search_hint": "雑誌・文庫本・辞書など",
+      "result": {
+        "category": "資源物",
+        "instruction": "ひもで十文字にしばって出します。",
+        "cautions": ["ビニールやセロハンなど、紙以外のものを取り外してください。", "汚れやにおいが取れないものは燃やせるごみです。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "paper_box",
+      "name": "紙製の菓子箱・小さな紙",
+      "kana": "かみせいのかしばこちいさなかみ",
+      "synonyms": ["菓子箱", "お菓子の箱", "雑がみ", "雑紙", "はがき", "封筒", "名刺"],
+      "search_hint": "菓子箱・はがき・封筒・名刺など",
+      "result": {
+        "category": "資源物",
+        "instruction": "小さな紙類は紙袋へ入れ、こぼれないようにひもでしばって出します。",
+        "cautions": ["ビニールやセロハンなどを取り外してください。", "感熱紙、合成紙、コーティング紙、食品・洗剤が付いた紙、においや汚れが取れない紙は燃やせるごみです。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "dirty_paper",
+      "name": "汚れた紙・感熱紙",
+      "kana": "よごれたかみかんねつし",
+      "synonyms": ["レシート", "油紙", "合成紙", "コーティング紙", "においのついた紙", "濡れた紙"],
+      "search_hint": "レシート・油紙・汚れやにおいが取れない紙",
+      "result": {
+        "category": "燃やせるごみ",
+        "instruction": "市指定ごみ袋へ入れて出します。",
+        "cautions": ["再び紙へリサイクルできない紙は資源物へ混ぜないでください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "food_tray",
+      "name": "食品トレー",
+      "kana": "しょくひんとれー",
+      "synonyms": ["白色トレー", "発泡トレー", "肉のトレー", "魚のトレー", "トレー"],
+      "search_hint": "名草地区かどうかで分別が変わります",
+      "decision": {
+        "start": "area",
+        "nodes": {
+          "area": {
+            "prompt": "お住まいは名草地区ですか？",
+            "help": "名草地区では2026年6月からプラスチック類の実証分別を行っています。",
+            "options": [
+              {"label": "はい（名草地区）", "next": "clean"},
+              {"label": "いいえ", "outcome": {"category": "燃やせるごみ", "instruction": "店頭回収を利用するか、市指定ごみ袋へ入れて出します。", "cautions": ["汚れていない白色トレーは、スーパー等の店頭回収も利用できます。"]}}
+            ]
+          },
+          "clean": {
+            "prompt": "汚れを拭き取るか、軽くすすいで落とせますか？",
+            "options": [
+              {"label": "はい", "outcome": {"category": "プラスチック類（名草地区限定）", "instruction": "水気を切り、透明または半透明の45L以下の袋へ入れ、口をしばって第2・第4火曜日に出します。", "cautions": ["プラマークの容器包装は30cm×20cm×20cm以内が対象です。", "名草地区だけの実証ルールです。"], "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007939.html"}},
+              {"label": "いいえ", "outcome": {"category": "燃やすしかないごみ（名草地区）", "instruction": "市指定ごみ袋へ入れて、名草地区の燃やすしかないごみの日に出します。", "cautions": ["汚れが落ちないものはプラスチック類へ入れません。"], "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007939.html"}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "plastic_bag",
+      "name": "プラスチック製の袋・包装",
+      "kana": "ぷらすちっくせいのふくろほうそう",
+      "synonyms": ["ポリ袋", "ビニール袋", "お菓子の袋", "ラップ", "プラ包装"],
+      "search_hint": "名草地区かどうかで分別が変わります",
+      "decision": {
+        "start": "area",
+        "nodes": {
+          "area": {
+            "prompt": "お住まいは名草地区ですか？",
+            "options": [
+              {"label": "はい（名草地区）", "next": "clean"},
+              {"label": "いいえ", "outcome": {"category": "燃やせるごみ", "instruction": "市指定ごみ袋へ入れて出します。", "cautions": ["家庭から出たものが対象です。"]}}
+            ]
+          },
+          "clean": {
+            "prompt": "汚れを拭き取るか、軽くすすいで落とせますか？",
+            "options": [
+              {"label": "はい", "outcome": {"category": "プラスチック類（名草地区限定）", "instruction": "水気を切り、透明または半透明の45L以下の袋へ入れ、口をしばって第2・第4火曜日に出します。", "cautions": ["プラマークがある容器・包装は30cm×20cm×20cm以内が対象です。", "ラベルは付けたままでも出せます。"], "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007939.html"}},
+              {"label": "いいえ", "outcome": {"category": "燃やすしかないごみ（名草地区）", "instruction": "市指定ごみ袋へ入れて出します。", "cautions": ["汚れが落ちないものはプラスチック類へ入れません。"], "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007939.html"}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "plastic_toy",
+      "name": "プラスチック製おもちゃ",
+      "kana": "ぷらすちっくせいおもちゃ",
+      "synonyms": ["おもちゃ", "玩具", "プラおもちゃ"],
+      "search_hint": "電池・金属・大きさ・名草地区を確認",
+      "decision": {
+        "start": "battery",
+        "nodes": {
+          "battery": {
+            "prompt": "電池や充電池を使うおもちゃですか？",
+            "options": [
+              {"label": "はい", "outcome": {"category": "画像だけでは案内できません", "instruction": "電池を外せるかで分別が変わります。電池を外せる場合は電池を有害ごみ、本体を素材と大きさに応じて分別します。外せない場合は製品本体ごと有害ごみです。", "cautions": ["発火の危険があるため、電池の有無を必ず確認してください。"], "safety_level": "high", "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002279.html"}},
+              {"label": "いいえ", "next": "area"}
+            ]
+          },
+          "area": {
+            "prompt": "お住まいは名草地区ですか？",
+            "options": [
+              {"label": "はい（名草地区）", "next": "material"},
+              {"label": "いいえ", "outcome": {"category": "燃やせるごみ", "instruction": "木製・樹脂製・プラスチック製で長辺50cm以下なら、市指定ごみ袋へ入れて出します。", "cautions": ["金属製は燃やせないごみです。", "長辺50cm超は粗大ごみです。"]}}
+            ]
+          },
+          "material": {
+            "prompt": "金属やゴム等がなく、すべてプラスチックで、厚さ5mm以内・30cm×20cm×20cm以内ですか？",
+            "options": [
+              {"label": "はい", "outcome": {"category": "プラスチック類（名草地区限定）", "instruction": "汚れを落として水気を切り、透明または半透明の45L以下の袋へ入れ、第2・第4火曜日に出します。", "cautions": ["危険物、電池使用製品、混合素材は絶対に入れないでください。"], "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007939.html"}},
+              {"label": "いいえ・分からない", "outcome": {"category": "要公式確認", "instruction": "素材・厚さ・大きさにより分別が変わります。足利市公式情報で確認してください。", "cautions": ["名草地区のプラスチック類は対象条件が細かいため、画像だけで判断しません。"], "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007939.html"}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "cd_dvd",
+      "name": "CD・DVD",
+      "kana": "しーでぃーでぃーぶいでぃー",
+      "synonyms": ["CD", "DVD", "コンパクトディスク", "ディスク", "CDケース"],
+      "search_hint": "名草地区かどうかで分別が変わります",
+      "decision": {
+        "start": "area",
+        "nodes": {
+          "area": {
+            "prompt": "お住まいは名草地区ですか？",
+            "options": [
+              {"label": "はい（名草地区）", "outcome": {"category": "プラスチック類（名草地区限定）", "instruction": "汚れを落とし、透明または半透明の45L以下の袋へ入れ、第2・第4火曜日に出します。", "cautions": ["素材がすべてプラスチックで、厚さ5mm以内・30cm×20cm×20cm以内のものが対象です。", "金属などが付く場合は公式情報を確認してください。"], "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007939.html"}},
+              {"label": "いいえ", "outcome": {"category": "燃やせるごみ", "instruction": "本体とケースを市指定ごみ袋へ入れて出します。", "cautions": ["家庭から出たものが対象です。"]}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "styrofoam",
+      "name": "発泡スチロール",
+      "kana": "はっぽうすちろーる",
+      "synonyms": ["発泡スチロール箱", "緩衝材", "スチロール"],
+      "search_hint": "名草地区かどうかで分別が変わります",
+      "decision": {
+        "start": "area",
+        "nodes": {
+          "area": {
+            "prompt": "お住まいは名草地区ですか？",
+            "options": [
+              {"label": "はい（名草地区）", "next": "clean"},
+              {"label": "いいえ", "outcome": {"category": "燃やせるごみ", "instruction": "市指定ごみ袋へ入れて出します。", "cautions": ["袋に入る大きさにしてください。"]}}
+            ]
+          },
+          "clean": {
+            "prompt": "汚れを落とせる、プラマーク付きの容器・包装ですか？",
+            "options": [
+              {"label": "はい", "outcome": {"category": "プラスチック類（名草地区限定）", "instruction": "水気を切り、透明または半透明の45L以下の袋へ入れ、第2・第4火曜日に出します。", "cautions": ["30cm×20cm×20cm以内が対象です。", "プラマーク付き容器包装は厚さ5mm超でも大きさの条件内なら対象です。"], "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007939.html"}},
+              {"label": "いいえ・汚れが落ちない", "outcome": {"category": "燃やすしかないごみ（名草地区）", "instruction": "市指定ごみ袋へ入れて出します。", "cautions": ["対象条件が分からない場合は公式情報を確認してください。"], "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007939.html"}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "kitchen_waste",
+      "name": "生ごみ・野菜くず",
+      "kana": "なまごみやさいくず",
+      "synonyms": ["生ゴミ", "残飯", "食べ残し", "野菜くず", "料理くず"],
+      "search_hint": "台所から出る生ごみ",
+      "result": {
+        "category": "燃やせるごみ",
+        "instruction": "水をよく切り、市指定ごみ袋へ入れて出します。",
+        "cautions": ["水切りを十分に行ってください。", "庭木の果実も指定ごみ袋へ入れます。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "cooking_oil",
+      "name": "食用油",
+      "kana": "しょくようあぶら",
+      "synonyms": ["天ぷら油", "廃食用油", "サラダ油", "揚げ油"],
+      "search_hint": "機械油・エンジンオイルは対象外",
+      "result": {
+        "category": "燃やせるごみ",
+        "instruction": "凝固材で固めるか、布や紙などに含ませ、市指定ごみ袋へ入れて出します。条件を満たす場合は拠点回収も利用できます。",
+        "cautions": ["液体のまま出さないでください。", "機械油・エンジンオイルは市で処理できないため、販売店へ相談してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "aluminum_foil",
+      "name": "アルミ箔・アルミホイル",
+      "kana": "あるみはくあるみほいる",
+      "synonyms": ["アルミホイル", "アルミ箔", "アルミ箔の鍋", "アルミ容器"],
+      "search_hint": "薄いアルミ箔・アルミ容器",
+      "result": {
+        "category": "燃やせるごみ",
+        "instruction": "市指定ごみ袋へ入れて出します。",
+        "cautions": ["空き缶や金属製の鍋とは分別が異なります。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "disposable_warmer",
+      "name": "使い捨てカイロ",
+      "kana": "つかいすてかいろ",
+      "synonyms": ["カイロ", "ホッカイロ", "使い捨て懐炉"],
+      "search_hint": "充電式カイロは別ルール",
+      "result": {
+        "category": "燃やせるごみ",
+        "instruction": "十分に冷えてから、市指定ごみ袋へ入れて出します。",
+        "cautions": ["充電式カイロは有害ごみです。", "発熱中のものは出さないでください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "shoes",
+      "name": "靴・長靴",
+      "kana": "くつながぐつ",
+      "synonyms": ["靴", "くつ", "スニーカー", "革靴", "長靴", "ブーツ"],
+      "search_hint": "一般的な靴・長靴",
+      "result": {
+        "category": "燃やせるごみ",
+        "instruction": "市指定ごみ袋へ入れて出します。",
+        "cautions": ["安全靴など特殊なものは素材・構造を公式一覧で確認してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "socks_underwear",
+      "name": "靴下・下着",
+      "kana": "くつしたしたぎ",
+      "synonyms": ["靴下", "ソックス", "下着", "肌着"],
+      "search_hint": "布類の資源物には出せません",
+      "result": {
+        "category": "燃やせるごみ",
+        "instruction": "市指定ごみ袋へ入れて出します。",
+        "cautions": ["着用可能でも、下着は布類の資源物ではありません。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "towel_sheet",
+      "name": "タオル・シーツ",
+      "kana": "たおるしーつ",
+      "synonyms": ["タオル", "タオルケット", "シーツ", "布切れ", "雑巾"],
+      "search_hint": "衣類の資源物には出せません",
+      "result": {
+        "category": "燃やせるごみ",
+        "instruction": "市指定ごみ袋へ入れて出します。",
+        "cautions": ["足利市の布類資源物は、着用可能な衣類（下着を除く）が対象です。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "stuffed_toy",
+      "name": "ぬいぐるみ",
+      "kana": "ぬいぐるみ",
+      "synonyms": ["縫いぐるみ", "人形", "布のおもちゃ"],
+      "search_hint": "長辺50cmで分別が変わります",
+      "decision": {
+        "start": "size",
+        "nodes": {
+          "size": {
+            "prompt": "いちばん長い辺は50cm以下ですか？",
+            "options": [
+              {"label": "はい（50cm以下）", "outcome": {"category": "燃やせるごみ", "instruction": "市指定ごみ袋へ入れて出します。", "cautions": ["布類の資源物には出せません。"]}},
+              {"label": "いいえ（50cm超）", "outcome": {"category": "粗大ごみ", "instruction": "粗大ごみの戸別収集へ申し込むか、南部クリーンセンターへ直接搬入します。", "cautions": ["ごみステーションには出せません。"], "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007599.html"}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "diaper",
+      "name": "おむつ（人用）",
+      "kana": "おむつじんよう",
+      "synonyms": ["紙おむつ", "布おむつ", "オムツ", "介護おむつ", "子ども用おむつ"],
+      "search_hint": "人用のみ。動物用はこの出し方の対象外",
+      "result": {
+        "category": "燃やせるごみ",
+        "instruction": "中の汚物をトイレへ流し、おむつだけを透明または半透明の袋へ入れて出します。",
+        "cautions": ["袋にはおむつ以外を入れないでください。", "動物用おむつはこの特例の対象外です。公式一覧を確認してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "metal_pan_kettle",
+      "name": "金属製の鍋・やかん",
+      "kana": "きんぞくせいのなべやかん",
+      "synonyms": ["鍋", "なべ", "フライパン", "やかん", "ケトル"],
+      "search_hint": "金属製・長辺50cm以下",
+      "decision": {
+        "start": "size",
+        "nodes": {
+          "size": {
+            "prompt": "金属製で、いちばん長い辺は50cm以下ですか？",
+            "options": [
+              {"label": "はい", "outcome": {"category": "金属類", "instruction": "中身を空にし、透明または半透明の袋へ入れて出します。", "cautions": ["汚れを落としてから出してください。"]}},
+              {"label": "いいえ・分からない", "outcome": {"category": "要公式確認", "instruction": "金属以外または長辺50cm超は分別が変わります。足利市公式の五十音一覧を確認してください。", "cautions": ["長辺50cm超で市が処理できるものは粗大ごみです。"]}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "glass_cup",
+      "name": "ガラス製コップ",
+      "kana": "がらすせいこっぷ",
+      "synonyms": ["ガラスコップ", "グラス", "ガラス食器"],
+      "search_hint": "びん類ではありません",
+      "result": {
+        "category": "燃やせないごみ",
+        "instruction": "透明または半透明の袋へ入れて出します。割れている場合は紙で包み「危険」と表示します。",
+        "cautions": ["空きびんの資源物とは分別が異なります。", "割れたものは必ず包んで「危険」と表示してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "ceramic_dish",
+      "name": "陶器・せとものの皿",
+      "kana": "とうきせともののさら",
+      "synonyms": ["陶器", "せともの", "皿", "茶碗", "どんぶり"],
+      "search_hint": "ガラス・陶器製の食器",
+      "result": {
+        "category": "燃やせないごみ",
+        "instruction": "透明または半透明の袋へ入れて出します。割れている場合は紙で包み「危険」と表示します。",
+        "cautions": ["割れたものは収集作業員がけがをしないように包んでください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "knife_blade",
+      "name": "刃物・カッターの刃",
+      "kana": "はものかったーのは",
+      "synonyms": ["包丁", "ナイフ", "カッター", "カッター刃", "刃物", "はさみ"],
+      "search_hint": "必ず紙で包み「危険」と表示",
+      "result": {
+        "category": "燃やせないごみ",
+        "instruction": "新聞紙や紙袋で十分に包み、「危険」と明記して、透明または半透明の袋へ入れて出します。",
+        "cautions": ["刃が外へ出ないよう確実に包んでください。", "収集作業員のけが防止のため「危険」の表示が必要です。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "umbrella",
+      "name": "雨傘",
+      "kana": "あまがさ",
+      "synonyms": ["傘", "かさ", "ビニール傘", "折りたたみ傘"],
+      "search_hint": "50cm超でも収集対象",
+      "result": {
+        "category": "燃やせないごみ",
+        "instruction": "複数ある場合はしばって出します。",
+        "cautions": ["雨傘は長辺50cm超でもごみステーションで収集されます。", "パラソルは別扱いです。公式一覧を確認してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007599.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "small_appliance",
+      "name": "小型家電",
+      "kana": "こがたかでん",
+      "synonyms": ["小型電気製品", "電化製品", "家電", "ハンディファン", "電動歯ブラシ", "シェーバー"],
+      "search_hint": "電池を使うか・外せるかで分別が変わります",
+      "decision": {
+        "start": "size",
+        "nodes": {
+          "size": {
+            "prompt": "長辺は50cm以下で、家電リサイクル法の対象外ですか？",
+            "help": "テレビ・エアコン・冷蔵庫類・洗濯機・衣類乾燥機は対象外です。",
+            "options": [
+              {"label": "はい", "next": "battery"},
+              {"label": "いいえ・分からない", "outcome": {"category": "要公式確認", "instruction": "大型品や家電リサイクル対象品は出し方が異なります。公式情報で品目を確認してください。", "cautions": ["ごみステーションへ出す前に確認してください。"]}}
+            ]
+          },
+          "battery": {
+            "prompt": "電池・充電池を使いますか？",
+            "options": [
+              {"label": "使わない", "outcome": {"category": "燃やせないごみ", "instruction": "電源コードを束ね、透明または半透明の袋へ入れて出します。", "cautions": ["製品ごとの例外は五十音一覧で確認してください。"]}},
+              {"label": "使う", "next": "removable"}
+            ]
+          },
+          "removable": {
+            "prompt": "電池を安全に取り外せますか？",
+            "options": [
+              {"label": "取り外せる", "outcome": {"category": "本体：燃やせないごみ／電池：有害ごみ", "instruction": "電池を外し、本体は透明または半透明の袋へ。外した電池は有害ごみとして別の透明または半透明の袋へ入れて出します。", "cautions": ["無理な分解はしないでください。", "電池端子はテープで絶縁してください。"], "safety_level": "high", "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002279.html"}},
+              {"label": "取り外せない", "outcome": {"category": "有害ごみ", "instruction": "製品本体ごと、透明または半透明の袋へ入れて出します。", "cautions": ["膨らみ・変形・発熱がある場合はごみステーションへ出さず、南部クリーンセンターまたは資源循環推進課へ直接持ち込んでください。"], "safety_level": "high", "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002279.html"}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002279.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "extension_cord",
+      "name": "延長コード",
+      "kana": "えんちょうこーど",
+      "synonyms": ["電源コード", "ケーブル", "テーブルタップ", "コードリール"],
+      "search_hint": "ドラム式も長辺50cm以下なら同じ",
+      "result": {
+        "category": "燃やせないごみ",
+        "instruction": "コードを束ね、透明または半透明の袋へ入れて出します。",
+        "cautions": ["ドラム式は長辺50cm以下が対象です。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "spray_can",
+      "name": "スプレー缶",
+      "kana": "すぷれーかん",
+      "synonyms": ["エアゾール缶", "殺虫剤", "整髪スプレー", "塗料スプレー"],
+      "search_hint": "中身が残っているか確認",
+      "decision": {
+        "start": "empty",
+        "nodes": {
+          "empty": {
+            "prompt": "中身を完全に使い切っていますか？",
+            "help": "火の気のない風通しのよい場所で、製品表示に従って確認してください。",
+            "options": [
+              {"label": "はい（完全に空）", "outcome": {"category": "有害ごみ", "instruction": "穴をあけず、透明または半透明の袋へ入れ、資源物とは別の袋で出します。", "cautions": ["穴はあけないでください。", "他の資源物と同じ袋に入れないでください。"], "safety_level": "high"}},
+              {"label": "いいえ・分からない", "outcome": {"category": "ごみステーション収集不可", "instruction": "無理にガス抜きや穴あけをせず、足利市公式情報または資源循環推進課へ確認してください。", "cautions": ["中身が残る容器は火災・爆発の危険があります。画像だけでは案内できません。"], "safety_level": "high"}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "cassette_cylinder",
+      "name": "カセットボンベ",
+      "kana": "かせっとぼんべ",
+      "synonyms": ["カセットガス", "ガス缶", "卓上コンロ用ボンベ"],
+      "search_hint": "中身が残っているか確認",
+      "decision": {
+        "start": "empty",
+        "nodes": {
+          "empty": {
+            "prompt": "中身は完全に空ですか？",
+            "options": [
+              {"label": "はい（完全に空）", "outcome": {"category": "有害ごみ", "instruction": "透明または半透明の袋へ入れ、資源物とは別の袋で出します。", "cautions": ["穴はあけないでください。"], "safety_level": "high"}},
+              {"label": "いいえ・分からない", "outcome": {"category": "ごみステーション収集不可", "instruction": "南部クリーンセンターへ直接搬入するか、資源循環推進課窓口へ持ち込みます。", "cautions": ["無理に穴をあけたり、火の近くでガス抜きをしないでください。"], "safety_level": "high"}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "lighter",
+      "name": "ライター",
+      "kana": "らいたー",
+      "synonyms": ["使い捨てライター", "ガスライター", "着火ライター"],
+      "search_hint": "中身が残っているか確認",
+      "decision": {
+        "start": "empty",
+        "nodes": {
+          "empty": {
+            "prompt": "中身を完全に使い切っていますか？",
+            "options": [
+              {"label": "はい（完全に空）", "outcome": {"category": "有害ごみ", "instruction": "透明または半透明の袋へ入れ、資源物とは別の袋で出します。", "cautions": ["火が付かないことを確認してください。"], "safety_level": "high"}},
+              {"label": "いいえ・分からない", "outcome": {"category": "ごみステーション収集不可", "instruction": "南部クリーンセンターへ直接搬入するか、資源循環推進課窓口へ持ち込みます。", "cautions": ["火気から離し、無理に分解しないでください。"], "safety_level": "high"}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "dry_cell",
+      "name": "乾電池",
+      "kana": "かんでんち",
+      "synonyms": ["アルカリ乾電池", "マンガン乾電池", "単一電池", "単二電池", "単三電池", "単四電池"],
+      "search_hint": "使い切りの筒形乾電池",
+      "result": {
+        "category": "有害ごみ",
+        "instruction": "電極をセロハンテープなどで絶縁し、透明または半透明の袋へ入れて出します。",
+        "cautions": ["資源物と同じ袋へ入れないでください。", "充電式電池やボタン電池は種類を確認してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "lithium_battery",
+      "name": "リチウムイオン電池・小型充電式電池",
+      "kana": "りちうむいおんでんちこがたじゅうでんしきでんち",
+      "synonyms": ["リチウム電池", "充電池", "ニカド電池", "ニッケル水素電池", "バッテリー"],
+      "search_hint": "膨らみ・変形がある場合はステーション不可",
+      "decision": {
+        "start": "damage",
+        "nodes": {
+          "damage": {
+            "prompt": "膨らみ・変形・発熱・破損がありますか？",
+            "options": [
+              {"label": "ない", "outcome": {"category": "有害ごみ", "instruction": "電極をテープで絶縁し、透明または半透明の袋へ入れて出すか、JBRC登録協力店の店頭回収を利用します。", "cautions": ["資源物と同じ袋へ入れないでください。", "強い力を加えないでください。"], "safety_level": "high"}},
+              {"label": "ある・分からない", "outcome": {"category": "ごみステーション収集不可", "instruction": "南部クリーンセンターまたは資源循環推進課へ直接持ち込みます。持ち運び方も事前に確認してください。", "cautions": ["発煙・発火の危険があります。押す、刺す、分解する、水にぬらす等をしないでください。"], "safety_level": "high"}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002279.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "mobile_battery",
+      "name": "モバイルバッテリー",
+      "kana": "もばいるばってりー",
+      "synonyms": ["携帯充電器", "モバイル充電器", "USBバッテリー", "パワーバンク"],
+      "search_hint": "膨らみ・変形がある場合はステーション不可",
+      "decision": {
+        "start": "damage",
+        "nodes": {
+          "damage": {
+            "prompt": "膨らみ・変形・発熱・破損がありますか？",
+            "options": [
+              {"label": "ない", "outcome": {"category": "有害ごみ", "instruction": "端子をテープで絶縁し、透明または半透明の袋へ入れて出すか、JBRC登録協力店の店頭回収を利用します。", "cautions": ["資源物と同じ袋へ入れないでください。"], "safety_level": "high"}},
+              {"label": "ある・分からない", "outcome": {"category": "ごみステーション収集不可", "instruction": "南部クリーンセンターまたは資源循環推進課へ直接持ち込みます。", "cautions": ["発煙・発火の危険があります。強い力を加えず、事前に持込方法を確認してください。"], "safety_level": "high"}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002279.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "fluorescent_tube",
+      "name": "蛍光管",
+      "kana": "けいこうかん",
+      "synonyms": ["蛍光灯", "直管蛍光灯", "丸形蛍光灯"],
+      "search_hint": "50cm超でも収集対象",
+      "result": {
+        "category": "有害ごみ",
+        "instruction": "割れないよう紙などで包み、透明または半透明の袋へ入れて出します。",
+        "cautions": ["資源物と同じ袋へ入れないでください。", "長辺50cm超でもごみステーションで収集されます。", "割れた場合は取り扱いに注意し、公式情報を確認してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "light_bulb",
+      "name": "電球",
+      "kana": "でんきゅう",
+      "synonyms": ["白熱電球", "LED電球", "電球型蛍光灯"],
+      "search_hint": "割れないように包む",
+      "result": {
+        "category": "有害ごみ",
+        "instruction": "割れないよう紙などで包み、透明または半透明の袋へ入れて出します。",
+        "cautions": ["資源物と同じ袋へ入れないでください。", "照明器具本体は別の分別です。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "mercury_thermometer",
+      "name": "水銀体温計・水銀温度計",
+      "kana": "すいぎんたいおんけいすいぎんおんどけい",
+      "synonyms": ["体温計", "温度計", "水銀計", "水銀使用製品"],
+      "search_hint": "デジタル式・赤液式は別ルール",
+      "result": {
+        "category": "有害ごみ",
+        "instruction": "割れないよう紙などで包み、透明または半透明の袋へ入れて出します。",
+        "cautions": ["水銀使用のものが対象です。", "デジタル式は電池を外して燃やせないごみ、赤液式は燃やせないごみです。", "割れた場合は触り方を含め公式窓口へ確認してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "bicycle",
+      "name": "自転車",
+      "kana": "じてんしゃ",
+      "synonyms": ["チャリ", "サイクル", "子ども用自転車"],
+      "search_hint": "粗大ごみ",
+      "result": {
+        "category": "粗大ごみ",
+        "instruction": "粗大ごみの戸別収集へ申し込むか、南部クリーンセンターへ直接搬入します。",
+        "cautions": ["ごみステーションには出せません。", "電動アシスト自転車はバッテリーの扱いを販売店・公式窓口へ確認してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007599.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "sofa",
+      "name": "ソファー",
+      "kana": "そふぁー",
+      "synonyms": ["ソファ", "長椅子", "ソファーベッド"],
+      "search_hint": "コイル式スプリング入りか確認",
+      "decision": {
+        "start": "spring",
+        "nodes": {
+          "spring": {
+            "prompt": "コイル式スプリングが入っていますか？",
+            "options": [
+              {"label": "入っていない", "outcome": {"category": "粗大ごみ", "instruction": "粗大ごみの戸別収集へ申し込むか、南部クリーンセンターへ直接搬入します。", "cautions": ["ごみステーションには出せません。"]}},
+              {"label": "入っている・分からない", "outcome": {"category": "市で処理できないもの", "instruction": "コイル式スプリング入りは、一般廃棄物収集運搬許可業者などへ相談してください。", "cautions": ["粗大ごみの戸別収集や南部クリーンセンターへの搬入はできません。"], "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002301.html"}}
+            ]
+          }
+        }
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "standard"
+    },
+    {
+      "id": "television",
+      "name": "テレビ",
+      "kana": "てれび",
+      "synonyms": ["TV", "液晶テレビ", "ブラウン管テレビ", "プラズマテレビ"],
+      "search_hint": "家電リサイクル法対象",
+      "result": {
+        "category": "市で処理できないもの",
+        "instruction": "家電リサイクル法に従い、小売店への引取り依頼など、足利市公式ページで案内された方法で処分します。",
+        "cautions": ["ごみステーション、粗大ごみ収集、南部クリーンセンターでは回収できません。", "リサイクル料金等が必要です。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002327.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "refrigerator",
+      "name": "冷蔵庫・冷凍庫・ワイン庫",
+      "kana": "れいぞうこれいとうこわいんこ",
+      "synonyms": ["冷蔵庫", "冷凍庫", "ワインセラー", "ワイン庫", "小型冷温庫", "ポータブル冷蔵庫"],
+      "search_hint": "家電リサイクル法対象",
+      "result": {
+        "category": "市で処理できないもの",
+        "instruction": "家電リサイクル法に従い、小売店への引取り依頼など、足利市公式ページで案内された方法で処分します。",
+        "cautions": ["ごみステーション、粗大ごみ収集、南部クリーンセンターでは回収できません。", "中身を空にして、処分方法を公式ページで確認してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002327.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "washer_dryer",
+      "name": "洗濯機・衣類乾燥機",
+      "kana": "せんたくきいるいかんそうき",
+      "synonyms": ["洗濯機", "洗濯乾燥機", "衣類乾燥機", "ドラム式洗濯機"],
+      "search_hint": "家電リサイクル法対象",
+      "result": {
+        "category": "市で処理できないもの",
+        "instruction": "家電リサイクル法に従い、小売店への引取り依頼など、足利市公式ページで案内された方法で処分します。",
+        "cautions": ["ごみステーション、粗大ごみ収集、南部クリーンセンターでは回収できません。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002327.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "air_conditioner",
+      "name": "エアコン",
+      "kana": "えあこん",
+      "synonyms": ["クーラー", "室外機", "空調機"],
+      "search_hint": "家電リサイクル法対象",
+      "result": {
+        "category": "市で処理できないもの",
+        "instruction": "本体・室外機とも家電リサイクル法に従い、小売店への引取り依頼など、足利市公式ページで案内された方法で処分します。",
+        "cautions": ["ごみステーション、粗大ごみ収集、南部クリーンセンターでは回収できません。", "取り外し工事が必要な場合は専門業者へ相談してください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002327.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "personal_computer",
+      "name": "パソコン本体・ディスプレイ",
+      "kana": "ぱそこんほんたいでぃすぷれい",
+      "synonyms": ["パソコン", "PC", "ノートパソコン", "デスクトップ", "モニター", "ディスプレイ"],
+      "search_hint": "宅配回収・メーカー回収など",
+      "result": {
+        "category": "市で処理できないもの",
+        "instruction": "資源有効利用促進法に従ってメーカー回収等を利用するか、市が連携する認定事業者の宅配回収を利用します。",
+        "cautions": ["個人データを必ず消去してください。", "宅配回収の料金・箱サイズ・対象品は公式ページで最新情報を確認してください。", "公開リポジトリへ端末内の個人ファイルを置かないでください。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002330.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "vehicle_tire",
+      "name": "自動車・バイク用タイヤ",
+      "kana": "じどうしゃばいくようたいや",
+      "synonyms": ["タイヤ", "車のタイヤ", "バイクタイヤ", "ホイール"],
+      "search_hint": "販売店または専門業者へ",
+      "result": {
+        "category": "市で処理できないもの",
+        "instruction": "販売店または専門の処理業者へ相談してください。",
+        "cautions": ["ごみステーション、粗大ごみ収集、南部クリーンセンターでは処理できません。", "自転車のタイヤ（ゴムのみ）は別ルールです。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002301.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    },
+    {
+      "id": "fire_extinguisher",
+      "name": "消火器",
+      "kana": "しょうかき",
+      "synonyms": ["家庭用消火器", "粉末消火器"],
+      "search_hint": "専門業者へ",
+      "result": {
+        "category": "市で処理できないもの",
+        "instruction": "消火器リサイクルの専門窓口や販売店など、足利市公式ページで案内された方法へ依頼してください。",
+        "cautions": ["中身を勝手に放出・分解しないでください。", "ごみステーションや南部クリーンセンターへは出せません。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002301.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "chemicals",
+      "name": "薬品・農薬",
+      "kana": "やくひんのうやく",
+      "synonyms": ["薬品", "農薬", "化学薬品", "劇物", "溶剤"],
+      "search_hint": "販売店または専門業者へ",
+      "result": {
+        "category": "市で処理できないもの",
+        "instruction": "購入した販売店または専門の処理業者へ相談してください。",
+        "cautions": ["混ぜる、流す、容器を開けるなどは危険です。", "品名や成分が分からない場合は触り方も含め専門窓口へ確認してください。", "画像だけでは処分方法を案内できません。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002301.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "high"
+    },
+    {
+      "id": "stone_concrete",
+      "name": "石・岩・コンクリート",
+      "kana": "いしいわこんくりーと",
+      "synonyms": ["石", "岩", "レンガ", "コンクリート", "コンクリートがら", "建設廃材"],
+      "search_hint": "専門業者へ",
+      "result": {
+        "category": "市で処理できないもの",
+        "instruction": "専門の処理業者へ相談してください。",
+        "cautions": ["ごみステーション、粗大ごみ収集、南部クリーンセンターでは処理できません。", "事業や工事で出たものは産業廃棄物に該当する場合があります。"]
+      },
+      "official_url": "https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002301.html",
+      "checked_date": "2026-09-10",
+      "safety_level": "caution"
+    }
+  ]
+}

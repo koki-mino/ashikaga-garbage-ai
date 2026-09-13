@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="写真または品目名から、足利市の家庭ごみの分別方法を確認する個人開発の非公式Webアプリです。">
+  <meta name="theme-color" content="#12314b">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob: data:; style-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://cdn.jsdelivr.net; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>足利ごみ分別AI（非公式）</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./config.js"></script>
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <div>
+        <div class="status-row">
+          <span class="unofficial-badge">個人開発・非公式</span>
+          <span id="modeBadge" class="mode-badge">一般公開版</span>
+        </div>
+        <h1>足利ごみ分別AI</h1>
+        <p class="subtitle">写真からごみの捨て方を調べる非公式サービス</p>
+      </div>
+      <div class="flow" aria-label="使い方">
+        <span>1 写真・品目</span><span aria-hidden="true">→</span>
+        <span>2 候補を確認</span><span aria-hidden="true">→</span>
+        <span>3 公式ルール</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell">
+    <section class="notice notice-important" aria-labelledby="importantTitle">
+      <div class="notice-mark" aria-hidden="true">!</div>
+      <div>
+        <h2 id="importantTitle">最初に確認してください</h2>
+        <p>本サービスは個人が作成した非公式サービスで、足利市が提供・運営・監修・保証するものではありません。AIの判定は参考です。最終的な分別・排出方法は足利市公式情報をご確認ください。</p>
+      </div>
+    </section>
+
+    <section class="area-alert" aria-label="名草地区の方へのお知らせ">
+      <div>
+        <span class="area-label">名草地区の方</span>
+        <strong>2026年6月からプラスチック類の実証分別があります。</strong>
+      </div>
+      <a href="https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p007939.html" target="_blank" rel="noopener noreferrer">市の案内を見る<span class="visually-hidden">（新しいタブで開きます）</span></a>
+    </section>
+
+    <section class="tool-card" aria-labelledby="toolTitle">
+      <div class="tool-heading">
+        <div>
+          <p class="eyebrow">調べる</p>
+          <h2 id="toolTitle">ごみを選んでください</h2>
+        </div>
+        <button id="resetButton" class="text-button" type="button">最初からやり直す</button>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="調べ方を選ぶ">
+        <button id="photoTab" class="tab is-active" type="button" role="tab" aria-selected="true" aria-controls="photoPanel">
+          <span class="tab-number">1</span>
+          <span><strong>写真を撮る・選ぶ</strong><small>画像は端末内で確認します</small></span>
+        </button>
+        <button id="searchTab" class="tab" type="button" role="tab" aria-selected="false" aria-controls="searchPanel" tabindex="-1">
+          <span class="tab-number">2</span>
+          <span><strong>品目名から調べる</strong><small>AIが使えない時も利用できます</small></span>
+        </button>
+      </div>
+
+      <div id="photoPanel" class="tab-panel" role="tabpanel" aria-labelledby="photoTab">
+        <label class="camera-button" for="imageInput">
+          <span class="camera-symbol" aria-hidden="true">＋</span>
+          <span><strong>写真を撮る・画像を選ぶ</strong><small>JPG・PNGなど／15MBまで</small></span>
+        </label>
+        <input id="imageInput" class="visually-hidden" type="file" accept="image/*" capture="environment">
+
+        <figure id="previewFigure" class="preview" hidden>
+          <img id="imagePreview" alt="選択したごみの写真">
+          <figcaption>選択した画像</figcaption>
+        </figure>
+
+        <div id="aiStatus" class="ai-status" role="status" aria-live="polite">
+          <span class="status-icon" aria-hidden="true">○</span>
+          <div><strong>画像AIの状態を確認中です</strong><p>そのまま品目名検索も使えます。</p></div>
+        </div>
+
+        <div id="aiResults" class="ai-results" aria-live="polite" hidden></div>
+
+        <button id="goToSearchButton" class="secondary-button full-button" type="button">品目名から調べる</button>
+      </div>
+
+      <div id="searchPanel" class="tab-panel" role="tabpanel" aria-labelledby="searchTab" hidden>
+        <form id="searchForm" role="search">
+          <label for="searchInput">品目名</label>
+          <div class="search-row">
+            <input id="searchInput" type="search" inputmode="search" autocomplete="off" placeholder="例：ペットボトル、電池、かさ">
+            <button class="primary-button" type="submit">検索</button>
+          </div>
+          <p class="input-help">漢字・ひらがな・カタカナ、呼び方の違いにも一部対応しています。</p>
+        </form>
+        <div class="quick-list" aria-label="よく調べる品目">
+          <span>よく調べる品目</span>
+          <div id="quickButtons"></div>
+        </div>
+        <div id="searchMessage" class="result-message" role="status" aria-live="polite"></div>
+        <div id="searchResults" class="search-results"></div>
+      </div>
+    </section>
+
+    <section id="decisionSection" class="decision-card" aria-labelledby="decisionTitle" hidden>
+      <p class="eyebrow">追加確認</p>
+      <h2 id="decisionTitle">条件を教えてください</h2>
+      <div id="decisionContent"></div>
+    </section>
+
+    <section id="resultSection" class="answer-card" aria-labelledby="answerTitle" hidden>
+      <div class="answer-heading">
+        <div>
+          <p class="eyebrow">分別結果</p>
+          <h2 id="answerTitle"></h2>
+        </div>
+        <span id="safetyBadge" class="safety-badge"></span>
+      </div>
+      <div id="categoryBadge" class="category-badge"></div>
+      <div class="answer-grid">
+        <section>
+          <h3>出し方</h3>
+          <p id="instructionText"></p>
+        </section>
+        <section>
+          <h3>注意</h3>
+          <ul id="cautionList"></ul>
+        </section>
+      </div>
+      <div id="safetyWarning" class="safety-warning" hidden></div>
+      <div class="source-box">
+        <div><span>情報確認日</span><strong id="checkedDate"></strong></div>
+        <a id="officialLink" class="official-button" target="_blank" rel="noopener noreferrer">足利市公式情報で確認<span class="visually-hidden">（新しいタブで開きます）</span></a>
+      </div>
+    </section>
+
+    <section class="information-grid" aria-label="利用上の情報">
+      <details>
+        <summary>画像とプライバシー</summary>
+        <p>選んだ画像は、この端末のブラウザ内だけでプレビューとAI判定に使います。本アプリのコードには、画像を外部サーバーへ送信・保存する処理、アクセス解析、広告、利用者追跡、位置情報取得はありません。</p>
+      </details>
+      <details>
+        <summary>画像AIについて</summary>
+        <p id="aiScopeText">現在、学習画像の提供前のため画像AIは準備中です。品目名検索は利用できます。</p>
+      </details>
+      <details>
+        <summary>収集日・多量のごみ</summary>
+        <p>収集日は町内ごとに異なります。決められた日の朝8時30分までに出してください。45L袋で4袋を超える多量のごみや、長辺50cm超（雨傘・蛍光管・段ボールを除く）は、ごみステーションに出せません。</p>
+      </details>
+    </section>
+
+    <noscript><p class="notice">このアプリの利用にはJavaScriptが必要です。ブラウザの設定でJavaScriptを有効にしてください。</p></noscript>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p><strong>足利ごみ分別AI</strong> — 個人による非公式プロジェクト</p>
+      <nav aria-label="公式情報と資料">
+        <a href="https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002345.html" target="_blank" rel="noopener noreferrer">足利市「家庭ごみの分け方・出し方」</a>
+        <a href="https://www.city.ashikaga.tochigi.jp/living/000018/000128/000560/p002314.html" target="_blank" rel="noopener noreferrer">足利市「家庭ごみの五十音一覧」</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
